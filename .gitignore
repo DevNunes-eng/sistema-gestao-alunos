@@ -17,3 +17,5 @@ test/
 # Ignorar arquivos do próprio IntelliJ (caso ele crie)
 .idea/
 *.iml
+alunos
+notas

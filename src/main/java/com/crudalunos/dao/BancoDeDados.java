@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package projeto1;
+package crudalunos.dao;
+
+import crudalunos.model.Aluno;
+import crudalunos.model.Disciplinas;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,8 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -55,20 +56,15 @@ public class BancoDeDados {
         }
         return null;
     }
-  public  void exportarAlunos() throws IOException{
-          for (int i = 0; i < ListaAluno.size(); i++) {
-              Aluno alunos = ListaAluno.get(i);
-             
-              if(i == 0){
-              alunos.exportar(false);
-              }
-              else{
-               alunos.exportar(true);
-              
-              }
-              }
-              
-          }
+    public void exportarAlunos() throws IOException {
+        // Cria o arquivo já em modo de sobrescrita. Se a lista estiver vazia, ele salva um arquivo em branco (apagando o removido)
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("alunos.csv"))) {
+            for (Aluno aluno : ListaAluno) {
+                bw.write(aluno.ExportarCSV());
+                bw.newLine();
+            }
+        }
+    }
   public void importarDadosArquivo(String caminhoArquivo) {
     try (BufferedReader br = new BufferedReader(new FileReader(caminhoArquivo))) {
         String linha;
