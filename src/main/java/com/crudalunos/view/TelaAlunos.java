@@ -265,6 +265,15 @@ public class TelaAlunos extends javax.swing.JFrame {
     }
 
     private void btnExibirActionPerformed(java.awt.event.ActionEvent evt) {
+        if (banco.getListaAluno() == null || banco.getListaAluno().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Erro! Você não tem nenhum aluno cadastrado para exibir.",
+                    "Atenção",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
         TelaExibir objeto = new TelaExibir(banco,notas,info,disci);
         desktop.add(objeto);
         objeto.setVisible(true);
@@ -272,6 +281,15 @@ public class TelaAlunos extends javax.swing.JFrame {
     }
 
     private void btnSalvarNotasActionPerformed(java.awt.event.ActionEvent evt) {
+        if (banco.getListaAluno() == null || banco.getListaAluno().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Erro! Você não tem nenhum aluno cadastrado para adicionat notas!",
+                    "Atenção",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
         TelaNotas objeto = new TelaNotas(banco,notas,disci);
         desktop.add(objeto);
         objeto.setVisible(true);
@@ -279,6 +297,15 @@ public class TelaAlunos extends javax.swing.JFrame {
     }
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {
+        if (banco.getListaAluno() == null || banco.getListaAluno().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Erro! Não tem nenhum aluno cadastrado no sistema para salvar informações!",
+                    "Atenção",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
         try {
             banco.exportarAlunos();
         } catch (IOException ex) {
@@ -293,6 +320,15 @@ public class TelaAlunos extends javax.swing.JFrame {
     }
 
     private void btnInfoActionPerformed(java.awt.event.ActionEvent evt) {
+        if (banco.getListaAluno() == null || banco.getListaAluno().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Erro! Você não tem nenhum aluno cadastrado para exibir informações!",
+                    "Atenção",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
         TelaInfo objeto = new TelaInfo(banco, info);
         desktop.add(objeto);
         objeto.setVisible(true);
@@ -300,6 +336,15 @@ public class TelaAlunos extends javax.swing.JFrame {
     }
 
     private void btnFaltaActionPerformed(java.awt.event.ActionEvent evt) {
+        if (banco.getListaAluno() == null || banco.getListaAluno().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Erro! Você não tem nenhum aluno cadastrado para você adicionar faltas!",
+                    "Atenção",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
         TelaFaltas objeto = new TelaFaltas(banco,faltas);
         desktop.add(objeto);
         objeto.setVisible(true);
@@ -307,6 +352,15 @@ public class TelaAlunos extends javax.swing.JFrame {
     }
 
     private void btnalterarActionPerformed(java.awt.event.ActionEvent evt) {
+        if (banco.getListaAluno() == null || banco.getListaAluno().isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Erro! Você não tem nenhum aluno cadastrado para alterar os dados!",
+                    "Atenção",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
         TelaSelecione objeto = new TelaSelecione(banco,notas,info,disci,faltas);
         objeto.setVisible(true);
         objeto.setResizable(false);

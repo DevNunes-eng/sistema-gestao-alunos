@@ -215,6 +215,15 @@ public class TelaFaltas extends javax.swing.JInternalFrame {
     }
 
     private void btnExibirActionPerformed(java.awt.event.ActionEvent evt) {
+        if (cmbAluno.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Atenção: Nenhum aluno foi selecionado!",
+                    "Aviso",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
         Aluno objeto = (Aluno) cmbAluno.getSelectedItem();
         List<Integer> faltas = objeto.getFaltas();
 

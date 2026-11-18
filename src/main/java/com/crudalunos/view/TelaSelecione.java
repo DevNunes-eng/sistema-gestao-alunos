@@ -8,6 +8,7 @@ import crudalunos.dao.BancoDeDados;
 import crudalunos.model.Aluno;
 import crudalunos.model.Disciplinas;
 
+import javax.swing.*;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,17 +21,16 @@ public class TelaSelecione extends javax.swing.JFrame {
     private ArrayList<Disciplinas> disci;
     private List<Integer> faltas;
 
+
     public TelaSelecione(BancoDeDados banco, List<Double> notas, List<String> info, ArrayList<Disciplinas> disci, List<Integer> faltas) {
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
-
         this.banco = banco;
         this.notas = notas;
         this.info = info;
         this.disci = disci;
         this.faltas = faltas;
-
         ArrayList<Aluno> objeto = banco.getListaAluno();
         for (int i = 0; i < objeto.size(); i++) {
             Aluno aluno = objeto.get(i);
@@ -152,15 +152,27 @@ public class TelaSelecione extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {
-        Aluno aluno = (Aluno) cmbAluno.getSelectedItem();
-        banco.setObjeto(aluno);
-        TelaAlunoMudança tela = new TelaAlunoMudança(banco, notas, info, disci, faltas);
-        tela.setVisible(true);
-        tela.setResizable(false);
-        tela.setLocationRelativeTo(null);
 
-        // ADICIONADO: Fecha a janela de seleção após abrir o menu de alterações do aluno
-        dispose();
+        if (cmbAluno.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(
+                    null,                               // Janela pai (null centraliza na tela)
+                    "Atenção: Nenhum aluno selecionado", // Mensagem de aviso
+                    "Aviso Importante",                 // Título da janela
+                    JOptionPane.WARNING_MESSAGE         // Tipo do ícone (Aviso / Exclamação)
+            );
+            return;
+        }
+        else {
+            Aluno aluno = (Aluno) cmbAluno.getSelectedItem();
+            banco.setObjeto(aluno);
+            TelaAlunoMudança tela = new TelaAlunoMudança(banco, notas, info, disci, faltas);
+            tela.setVisible(true);
+            tela.setResizable(false);
+            tela.setLocationRelativeTo(null);
+
+            // ADICIONADO: Fecha a janela de seleção após abrir o menu de alterações do aluno
+            dispose();
+        }
     }
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {
