@@ -1,0 +1,19 @@
+# Ignorar pastas compiladas e arquivos de configuração do NetBeans
+build/
+nbproject/
+build
+*.form
+
+# Ignorar arquivos compilados Java
+*.class
+
+# Ignorar a pasta de testes se não for subir agora
+test/
+
+# Ignorar planilhas (caso não sejam dados iniciais importantes)
+# Remova as duas linhas abaixo se quiser subir as planilhas
+
+
+# Ignorar arquivos do próprio IntelliJ (caso ele crie)
+.idea/
+*.iml
